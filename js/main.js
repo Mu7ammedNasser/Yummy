@@ -148,6 +148,7 @@ function displayMealsByChar(data) {
 
 $("#categories").on("click", function () {
   getCategoryData();
+  closeNav();
 });
 
 async function getCategoryData() {
@@ -173,7 +174,7 @@ function truncateText(text, wordLimit) {
 
 function dispalyCategoryData(data) {
   let categoriesBox = "";
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < data.length; i++) {
     let trucatedText = truncateText(data[i].strCategoryDescription, 20);
 
     categoriesBox += `
