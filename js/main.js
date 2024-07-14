@@ -91,7 +91,7 @@ function displayMealsByName(data) {
   
   
   let byNameBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     byNameBox += `
         <div class="item-container p-2 col-md-3 " id="${data[i].idMeal}">
           <div class="item position-relative ">
@@ -123,7 +123,7 @@ async function getMealsByChar(mealChar) {
 function displayMealsByChar(data) {
   
   let byCharBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     byCharBox += `
             <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
             <div class="item position-relative">
@@ -173,7 +173,7 @@ function truncateText(text, wordLimit) {
 
 function dispalyCategoryData(data) {
   let categoriesBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     let trucatedText = truncateText(data[i].strCategoryDescription, 20);
 
     categoriesBox += `
@@ -211,7 +211,7 @@ async function getMealsOfCategory(categoryName) {
 
 function displayMealsOfCategory(data) {
   let mealsOfCategoryBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     mealsOfCategoryBox += `
             <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
             <div class="item position-relative">
@@ -250,7 +250,7 @@ async function getAreaData() {
 
 function displayAreaData(data) {
   let areaBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     areaBox += `
             <div class="item-container p-3 col-md-3">
             <div class="item position-relative text-center text-white p-3">
@@ -281,7 +281,7 @@ async function getMealsOfArea(areaName) {
 function displayMealsOfArea(data) {
 
   let mealsOfAreaBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     mealsOfAreaBox += `
             <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
             <div class="item position-relative">
@@ -355,7 +355,7 @@ async function getMealsOfMainIngredient(IngredientName) {
 
 function displayMealsOfMainIngredient(data) {
   let mealsOfIngredientBox = "";
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 20; i++) {
     mealsOfIngredientBox += `
             <div class="item-container p-2 col-md-3"  id="${data[i].idMeal}">
             <div class="item position-relative">
