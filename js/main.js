@@ -50,7 +50,7 @@ $(".icon").on("click", function () {
     openNav();
   }
 });
-
+ 
 //end aside logic
 
 // start home content logic
