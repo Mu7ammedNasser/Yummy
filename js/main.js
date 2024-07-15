@@ -4,34 +4,43 @@ function showLoading() {
 }
 
 function hideLoading() {
-  $(".spinner-container").fadeOut(500 , function() {
+  $(".spinner-container").fadeOut(500, function () {
     $(".spinner-container").addClass("d-none");
   });
 }
-
-
-
 
 //start aside logic
 
 function closeNav() {
   $("aside").animate({ left: "-260px" }, 500);
-  $(".icon").html(`<i class=" i text-black fa-solid open-close-icon fa-2x fa-align-justify"></i>`);
+  $(".icon").html(
+    `<i class=" i text-black fa-solid open-close-icon fa-2x fa-align-justify"></i>`
+  );
   for (let i = 0; i < 5; i++) {
-    $("ul li").eq(i).animate({
-        top: 300
-    }, (i + 5) * 10)
-}
+    $("ul li")
+      .eq(i)
+      .animate(
+        {
+          top: 300,
+        },
+        (i + 5) * 10
+      );
+  }
 }
 
 function openNav() {
   $("aside").animate({ left: "0px" }, 500);
   $(".icon").html(`<i class="i text-black fa-3x fa-solid fa-xmark"></i>`);
   for (let i = 0; i < 5; i++) {
-    $("ul li").eq(i).animate({
-        top: 0
-    }, (i + 5) * 100)
-}
+    $("ul li")
+      .eq(i)
+      .animate(
+        {
+          top: 0,
+        },
+        (i + 5) * 100
+      );
+  }
 }
 
 $(".icon").on("click", function () {
@@ -58,14 +67,14 @@ function displaySearchInputs() {
   let inputs = `
        <div class="container row py-4">
             <div class="mb-3 col-md-5">
-                <input id="byName" type="text" class=" form-control bg-black text-white" id="exampleFormControlInput1" placeholder="Search By Name">
+                <input id="byName" type="text" class="form-control bg-black text-white" placeholder="Search By Name">
               </div>
               <div class="mb-3 col-md-5">
-                <input id="byChar" type="text" maxlength="1" class="form-control bg-black text-white" id="exampleFormControlInput1" placeholder="Search By First Letter">
+                <input id="byChar" type="text" maxlength="1" class="form-control bg-black text-white" placeholder="Search By First Letter">
               </div>
         </div>
     `;
-  $("#rowData").html(` `);
+  $("#rowData").html(``);
   $("#searchContent").html(inputs);
   closeNav();
 
@@ -78,20 +87,20 @@ function displaySearchInputs() {
 }
 
 async function getMealsByName(mealName) {
-  showLoading(); 
-  let result = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`
-  );
-  let data = await result.json();
-  displayMealsByName(data.meals);
-  hideLoading(); 
+  showLoading();
+    let result = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`);
+    let data = await result.json();
+    displayMealsByName(data.meals);
+  hideLoading();
 }
 
 function displayMealsByName(data) {
-  
-  
+  if (!data) {
+    $("#rowData").html(`<p class=" text-white fw-bold">No meals found for this search term.</p>`);
+    return;
+  }
   let byNameBox = "";
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < data.length; i++) {
     byNameBox += `
         <div class="item-container p-2 col-md-4 col-lg-3 " id="${data[i].idMeal}">
           <div class="item position-relative ">
@@ -111,19 +120,24 @@ function displayMealsByName(data) {
 }
 
 async function getMealsByChar(mealChar) {
-  showLoading(); 
-  let result = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?f=${mealChar}`
-  );
-  let data = await result.json();
-  displayMealsByChar(data.meals);
-  hideLoading(); 
+  showLoading();
+  try {
+    let result = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${mealChar}`);
+    let data = await result.json();
+    displayMealsByChar(data.meals);
+  } catch (error) {
+    console.error("Error fetching meals by character:", error);
+  }
+  hideLoading();
 }
 
 function displayMealsByChar(data) {
-  
+  if (!data) {
+    $("#rowData").html("<p>No meals found for this search term.</p>");
+    return;
+  }
   let byCharBox = "";
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < data.length; i++) {
     byCharBox += `
             <div class="item-container p-2 col-md-4 col-lg-3" id="${data[i].idMeal}">
             <div class="item position-relative">
@@ -142,6 +156,7 @@ function displayMealsByChar(data) {
   });
 }
 
+
 // end search logic
 
 // start category logic
@@ -152,7 +167,7 @@ $("#categories").on("click", function () {
 });
 
 async function getCategoryData() {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/categories.php`
   );
@@ -161,7 +176,7 @@ async function getCategoryData() {
   dispalyCategoryData(categories);
   closeNav();
   console.log(categories);
-  hideLoading(); 
+  hideLoading();
 }
 
 function truncateText(text, wordLimit) {
@@ -201,13 +216,13 @@ function dispalyCategoryData(data) {
 }
 
 async function getMealsOfCategory(categoryName) {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`
   );
   let data = await result.json();
   displayMealsOfCategory(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function displayMealsOfCategory(data) {
@@ -239,14 +254,14 @@ $("#area").on("click", function () {
   closeNav();
 });
 async function getAreaData() {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/list.php?a=list`
   );
   let data = await result.json();
   displayAreaData(data.meals);
   console.log(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function displayAreaData(data) {
@@ -270,17 +285,16 @@ function displayAreaData(data) {
 }
 
 async function getMealsOfArea(areaName) {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaName}`
   );
   let data = await result.json();
   displayMealsOfCategory(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function displayMealsOfArea(data) {
-
   let mealsOfAreaBox = "";
   for (let i = 0; i < 20; i++) {
     mealsOfAreaBox += `
@@ -309,14 +323,14 @@ $("#ingredients").on("click", function () {
 });
 
 async function getIngredientsData() {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/list.php?i=list`
   );
   let data = await result.json();
   dispalyIngredientsData(data.meals);
   console.log(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function dispalyIngredientsData(data) {
@@ -345,13 +359,13 @@ function dispalyIngredientsData(data) {
 }
 
 async function getMealsOfMainIngredient(IngredientName) {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?i=${IngredientName}`
   );
   let data = await result.json();
   displayMealsOfCategory(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function displayMealsOfMainIngredient(data) {
@@ -378,14 +392,14 @@ function displayMealsOfMainIngredient(data) {
 
 // start details logic
 async function getInDetailsData(id) {
-  showLoading(); 
+  showLoading();
   let result = await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   );
   let data = await result.json();
   displayDetailsData(data.meals);
   console.log(data.meals);
-  hideLoading(); 
+  hideLoading();
 }
 
 function displayDetailsData(data) {
@@ -440,7 +454,8 @@ function displayContactPage() {
             <div
               class="container d-flex flex-column justify-content-center align-items-center w-75 vh-100"
             >
-              <div class="row">
+              <div class="row text-center">
+              <h2 class="text-white mb-5">Contact Us</h2>
                 <div class="mb-3 col-md-6">
                   <input
                     type="text"
@@ -642,5 +657,4 @@ function checkFormValidity() {
     $("#submitButton").addClass("catch-me disabled");
   }
 }
-
 // end contact us logic
