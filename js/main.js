@@ -212,7 +212,7 @@ async function getMealsOfCategory(categoryName) {
 
 function displayMealsOfCategory(data) {
   let mealsOfCategoryBox = "";
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < data.length; i++) {
     mealsOfCategoryBox += `
             <div class="item-container p-2 col-md-4 col-lg-3" id="${data[i].idMeal}">
             <div class="item position-relative">
