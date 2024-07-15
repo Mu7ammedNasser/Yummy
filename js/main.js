@@ -93,7 +93,7 @@ function displayMealsByName(data) {
   let byNameBox = "";
   for (let i = 0; i < 20; i++) {
     byNameBox += `
-        <div class="item-container p-2 col-md-3 " id="${data[i].idMeal}">
+        <div class="item-container p-2 col-md-4 col-lg-3 " id="${data[i].idMeal}">
           <div class="item position-relative ">
             <img src="${data[i].strMealThumb}" class="w-100 d-block" alt="test" />
             <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer">
@@ -125,7 +125,7 @@ function displayMealsByChar(data) {
   let byCharBox = "";
   for (let i = 0; i < 20; i++) {
     byCharBox += `
-            <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
+            <div class="item-container p-2 col-md-4 col-lg-3" id="${data[i].idMeal}">
             <div class="item position-relative">
               <img src="${data[i].strMealThumb}" class="w-100 d-block" alt="test" />
               <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer position-absolute">
@@ -178,7 +178,7 @@ function dispalyCategoryData(data) {
     let trucatedText = truncateText(data[i].strCategoryDescription, 20);
 
     categoriesBox += `
-            <div class="item-container p-2 col-md-3">
+            <div class="item-container p-2 col-md-4 col-lg-3">
             <div class="item position-relative">
               <img src="${data[i].strCategoryThumb}" class="w-100 d-block" alt="test" />
               <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer position-absolute">
@@ -214,7 +214,7 @@ function displayMealsOfCategory(data) {
   let mealsOfCategoryBox = "";
   for (let i = 0; i < 20; i++) {
     mealsOfCategoryBox += `
-            <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
+            <div class="item-container p-2 col-md-4 col-lg-3" id="${data[i].idMeal}">
             <div class="item position-relative">
               <img src="${data[i].strMealThumb}" class="w-100 d-block" alt="test" />
               <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer position-absolute">
@@ -253,7 +253,7 @@ function displayAreaData(data) {
   let areaBox = "";
   for (let i = 0; i < 20; i++) {
     areaBox += `
-            <div class="item-container p-3 col-md-3">
+            <div class="item-container p-3 col-md-4 col-lg-3">
             <div class="item position-relative text-center text-white p-3">
                 <i class="fa-solid fa-house-laptop fa-4x"></i>
                 <h2>${data[i].strArea}</h2>
@@ -284,7 +284,7 @@ function displayMealsOfArea(data) {
   let mealsOfAreaBox = "";
   for (let i = 0; i < 20; i++) {
     mealsOfAreaBox += `
-            <div class="item-container p-2 col-md-3" id="${data[i].idMeal}">
+            <div class="item-container p-2 col-md-4 col-lg-3" id="${data[i].idMeal}">
             <div class="item position-relative">
               <img src="${data[i].strMealThumb}" class="w-100 d-block" alt="test" />
               <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer position-absolute">
@@ -324,7 +324,7 @@ function dispalyIngredientsData(data) {
   for (i = 0; i < 20; i++) {
     let trucatedText = truncateText(data[i].strDescription, 15);
     ingredientsBox += `
-            <div class="item-container p-2 col-md-3">
+            <div class="item-container p-2 col-md-4 col-lg-3">
             <div class="item position-relative text-center text-white p-2">
               <i class="fa-solid fa-drumstick-bite fa-3x"></i>
               <h3 class = "h4">${data[i].strIngredient}</h3>
@@ -358,7 +358,7 @@ function displayMealsOfMainIngredient(data) {
   let mealsOfIngredientBox = "";
   for (let i = 0; i < 20; i++) {
     mealsOfIngredientBox += `
-            <div class="item-container p-2 col-md-3"  id="${data[i].idMeal}">
+            <div class="item-container p-2 col-md-4 col-lg-3"  id="${data[i].idMeal}">
             <div class="item position-relative">
               <img src="${data[i].strMealThumb}" class="w-100 d-block" alt="test" />
               <div class="d-flex flex-column text-center justify-content-center align-items-center position-absolute w-100 h-100 top-100 meal-layer position-absolute">
